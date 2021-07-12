@@ -2,6 +2,7 @@ const PDFToolsSdk = require('@adobe/pdfservices-node-sdk');
 const fs = require('fs')
 const express = require("express");
 var request = require('request').defaults({ encoding: null });
+const bodyParser = require("body-parser")
 
 const inputFile = "./creditMemo.docx"
 const outputFile = "./creditMemo.pdf"
@@ -9,6 +10,13 @@ var logo;
 var data;
 
 const app = express();
+
+app.use(express.json()); 
+
+app.use(bodyParser.urlencoded({
+	extended: true
+  }));
+
 
 /* for reference data can be sent through postman
 data = {
@@ -94,21 +102,22 @@ data = {
 app.post("/creditMemo", async(req,res) => {
 
 	const data = req.body;
-	console.log(req)
 
-	/* this function handles converting the jpeg to a base64
-	const getBase = async () => await request.get("https://creditmemofile.s3.us-east-2.amazonaws.com/037aedc5-e4b8-4a47-9b6f-4d6e4117b6ec.jpeg", async (error, response, body) => {
+	//this function handles converting the jpeg to a base64
+	const getBase = async () => await request.get(data.logo, async (error, response, body) => {
 		if (!error && response.statusCode == 200) {
 			logo = "data:" + response.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
 			logo = "" + logo + ""
 			console.log("HERE IS THE STRING FOR BASE64 "+logo)
 		}
 	});
-	*/
+
+	getBase();
+
+	data.logo = logo
+	console.log(data)
 
 	if(fs.existsSync(outputFile)) fs.unlinkSync(outputFile)
-
-	//getBase()
 
 	const credentials =  PDFToolsSdk.Credentials
 	.serviceAccountCredentialsBuilder()
@@ -126,6 +135,7 @@ app.post("/creditMemo", async(req,res) => {
 	const input = PDFToolsSdk.FileRef.createFromLocalFile(inputFile)
 	documentMergeOperation.setInput(input)
 
+	//return result to Postman / browser
 	documentMergeOperation.execute(executionContext)
 	.then(result => result.saveAsFile(outputFile))
 	.catch(err => {
