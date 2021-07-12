@@ -1,10 +1,18 @@
 const PDFToolsSdk = require('@adobe/pdfservices-node-sdk');
 const fs = require('fs')
+const express = require("express");
+var request = require('request').defaults({ encoding: null });
 
 const inputFile = "./creditMemo.docx"
 const outputFile = "./creditMemo.pdf"
+var logo;
+var data;
 
-const data = {
+const app = express();
+
+/* for reference data can be sent through postman
+data = {
+	"logo": logo,
 	"date": "2021-07-01T04:00:00.000Z",
 	"loanOfficer": "William Hawking",
 	"loanAnalyst": "Michelle Smith",
@@ -81,33 +89,57 @@ const data = {
 	"strengthsWeaknessesOfficerRecommendation": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
 	"loanPolicyExceptions": "Exception2"
 };
+*/
 
-if(fs.existsSync(outputFile)) fs.unlinkSync(outputFile)
+app.post("/creditMemo", async(req,res) => {
 
-const credentials =  PDFToolsSdk.Credentials
-.serviceAccountCredentialsBuilder()
-.fromFile("./pdfservices-api-credentials.json")
-.build();
+	const data = req.body;
+	console.log(req)
 
-const executionContext = PDFToolsSdk.ExecutionContext.create(credentials)
+	/* this function handles converting the jpeg to a base64
+	const getBase = async () => await request.get("https://creditmemofile.s3.us-east-2.amazonaws.com/037aedc5-e4b8-4a47-9b6f-4d6e4117b6ec.jpeg", async (error, response, body) => {
+		if (!error && response.statusCode == 200) {
+			logo = "data:" + response.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
+			logo = "" + logo + ""
+			console.log("HERE IS THE STRING FOR BASE64 "+logo)
+		}
+	});
+	*/
 
-const documentMerge = PDFToolsSdk.DocumentMerge,
-documentMergeOptions = documentMerge.options,
-options = new documentMergeOptions.DocumentMergeOptions(data, documentMergeOptions.OutputFormat.PDF)
+	if(fs.existsSync(outputFile)) fs.unlinkSync(outputFile)
 
-const documentMergeOperation = documentMerge.Operation.createNew(options)
+	//getBase()
 
-const input = PDFToolsSdk.FileRef.createFromLocalFile(inputFile)
-documentMergeOperation.setInput(input)
+	const credentials =  PDFToolsSdk.Credentials
+	.serviceAccountCredentialsBuilder()
+	.fromFile("./pdfservices-api-credentials.json")
+	.build();
 
-documentMergeOperation.execute(executionContext)
-.then(result => result.saveAsFile(outputFile))
-.catch(err => {
-        if(err instanceof PDFToolsSdk.Error.ServiceApiError || err instanceof PDFToolsSdk.Error.ServiceUsageError) {
-            console.log("Exception encountered while executing operation", err)
-        } else {
-            console.log("Exception encountered while executing operation", err)
-        }
+	const executionContext = PDFToolsSdk.ExecutionContext.create(credentials)
+
+	const documentMerge = PDFToolsSdk.DocumentMerge,
+	documentMergeOptions = documentMerge.options,
+	options = new documentMergeOptions.DocumentMergeOptions(data, documentMergeOptions.OutputFormat.PDF)
+
+	const documentMergeOperation = documentMerge.Operation.createNew(options)
+
+	const input = PDFToolsSdk.FileRef.createFromLocalFile(inputFile)
+	documentMergeOperation.setInput(input)
+
+	documentMergeOperation.execute(executionContext)
+	.then(result => result.saveAsFile(outputFile))
+	.catch(err => {
+			if(err instanceof PDFToolsSdk.Error.ServiceApiError || err instanceof PDFToolsSdk.Error.ServiceUsageError) {
+				console.log("Exception encountered while executing operation", err)
+			} else {
+				console.log("Exception encountered while executing operation", err)
+			}
+	})
+
+});
+
+app.listen(5000, () => {
+	console.log("Server has started on port 5000")
 })
 
 
