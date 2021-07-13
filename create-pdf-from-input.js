@@ -20,102 +20,123 @@ app.use(bodyParser.urlencoded({
 
 /* for reference data can be sent through postman
 data = {
-	"logo": logo,
-	"date": "2021-07-01T04:00:00.000Z",
-	"loanOfficer": "William Hawking",
-	"loanAnalyst": "Michelle Smith",
-	"borrower": "Milkyway corporation",
-	"specificLoanPurpose": "Purpose of the loan.",
-	"id": 679255,
-	"status": "Completed",
-	"projectName": "Milkyway Giants",
-	"streetAddress": "910 Deerfield Crossing Dr Apt 7303",
-	"appartment": "",
-	"city": "Alpharetta",
-	"state": "GA",
-	"zipcode": "30004-1824",
-	"propertyPics": "[\"https://creditmemofile.s3.us-east-2.amazonaws.com/ffe5b900-7f6c-4093-9d50-540e9d6793f5.jpg\",\"https://creditmemofile.s3.us-east-2.amazonaws.com/cc57af55-2aa7-496d-9522-aef76e37b06d.jpg\"]",
-	"appraisalReport": "",
-	"salesPrice": "35,000,000",
-	"appraisedValue": "32,500,000",
-	"propertyType": "Hotel/Motel",
-	"PropertyCollateralDescription": "A brief description about the property collaterals",
-	"loanAmount": "30,000,000",
-	"loanAmortization": 340,
-	"interestRate": "3.95",
-	"fee": "0",
-	"MDSSL": "0",
-	"proposedPayment": "$146,764.32",
-	"capitalizationRate": "7.50%",
-	"ltvPercent": "80%",
-	"TDSCR": "1.15",
-	"balloonTerm": 60,
-	"BERR": "8.00%",
-	"NOI": "$543,766.00 ",
-	"GPRINC": "$756,000.00 ",
-	"TOE": "$174,434.00 ",
-	"HNOI": "$643,766.00 ",
-	"HGPRINC": "$856,000.00 ",
-	"HTOE": "$274,434.00 ",
-	"LTVAM": "$26,000,000.00",
-	"FLAM": "$8,054,409.96",
-	"LTVRatio": "24.78",
-	"reservesRequired": "N/A",
-	"DSCR": "0.31",
-	"ADSAM": "$472,840.00",
-	"ADSSL": "$0.00",
-	"MPDSCR": "$39,403.33",
-	"maxSustainableLoanAmount": "$8,054,409.96",
-	"EAPRAM": "$7,250,213.00",
-	"debtYield": "1.81%",
-	"actualAnnualDebtService": "$1,761,171.84",
-	"breakEvenOccupancyRate": "256.03%",
-	"selectedNOI": "1",
-	"underwriterNOI": "$543,766.00 ",
-	"underwriterGPRINC": "$756,000.00 ",
-	"underwriterTOE": "$174,434.00 ",
-	"justification": "",
-	"rentalIncomeInformation": "",
-	"tenantLeaseInformation": "",
-	"equity": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"management": "test Management",
-	"managementAdditionalInfo": "",
-	"reputation": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"financialStatements": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"liquidity": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"secondaryRepayment": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"managementAdditional": "",
-	"financialAdditional": "",
-	"marketFile": "",
-	"singleAsset": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"guarantyConsiderations": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"amortization": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"reservesEscrows": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"insuranceRequirements": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"creditEnhancemen": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"LoanAgreementAdditionalDetails": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"strengthsWeaknessesOfficerRecommendation": "\"From page 86 \"\"potential gross income field\"\" \nor keyed in \"",
-	"loanPolicyExceptions": "Exception2"
-};
+{
+	"borrowerAnalysis": {
+		"equity": "test equity",
+		"financialAdditional": "",
+		"financialStatements": "test",
+		"liquidity": "test",
+		"management": "test",
+		"managementAdditional": "",
+		"managementAdditionalInfo": "",
+		"marketFile": "",
+		"reputation": "test",
+		"secondaryRepayment": "test"
+	},
+	"id": "68f5c9e7-8187-47c2-a496-1d8ae1ca5a96",
+	"lastModifiedOn": "7/7/2021, 9:56:30 PM",
+	"loanGenericDetails": {
+		"borrower": "Madam Curie",
+		"date": "2021-07-10T04:00:00.000Z",
+		"loanAnalyst": "Issac Newton",
+		"loanOfficer": "Albert Einstein",
+		"specificLoanPurpose": "test purpose, changed again! Yes"
+	},
+	"loanStructure": {
+		"balloonTerm": 60,
+		"BERR": "8.00%",
+		"capitalizationRate": "1.15",
+		"fee": "0",
+		"interestRate": "4.3",
+		"loanAmortization": 303,
+		"loanAmount": "4789652",
+		"ltvPercent": "80",
+		"MDSSL": "0",
+		"proposedPayment": "$25,937.79",
+		"TDSCR": "25"
+	},
+	"loanStructureAndCreditEnhancements": {
+		"amortization": "test spl amoritization terms",
+		"creditEnhancemen": "test",
+		"guarantyConsiderations": "test",
+		"insuranceRequirements": "test terdy",
+		"LoanAgreementAdditionalDetails": "test",
+		"loanPolicyExceptions": "Exception4",
+		"reservesEscrows": "test",
+		"singleAsset": "test",
+		"strengthsWeaknessesOfficerRecommendation": "test"
+	},
+	"propertyDetails": {
+		"appartment": "",
+		"appraisalReport": "",
+		"appraisedValue": "$6,500,000",
+		"city": "Alpharetta",
+		"projectName": "MyProject",
+		"PropertyCollateralDescription": "Collateral",
+		"propertyPics": "[\"https://creditmemofile.s3.us-east-2.amazonaws.com/ffe5b900-7f6c-4093-9d50-540e9d6793f5.jpg\",\"https://creditmemofile.s3.us-east-2.amazonaws.com/cc57af55-2aa7-496d-9522-aef76e37b06d.jpg\"]",
+		"propertyType": "Warehouse",
+		"salesPrice": "$7,250,213 ",
+		"state": "Georgia",
+		"streetAddress": "910 Deerfield Crossing Dr Apt 7303",
+		"zipcode": "30004-1824"
+	},
+	"propertyFinancials": {
+		"actualAnnualDebtService": "$311,253.48",
+		"ADSAM": "$10,349.64",
+		"ADSSL": "$0.00",
+		"breakEvenOccupancyRate": "263.01%",
+		"debtYield": "5.40%",
+		"DSCR": "0.83",
+		"EAPRAM": "$22,499,217.00",
+		"FLAM": "$159,263.06",
+		"GPRINC": "4000000",
+		"HGPRINC": "258963",
+		"HNOI": "258741",
+		"HTOE": "369852",
+		"justification": "some justification",
+		"LTVAM": "$5,200,000.00",
+		"LTVRatio": "2.45",
+		"maxSustainableLoanAmount": "$159,263.06",
+		"MPDSCR": "$862.47",
+		"NOI": "$6,000,000.00",
+		"rentalIncomeInformation": "",
+		"reservesRequired": "N/A",
+		"selectedNOI": "2",
+		"tenantLeaseInformation": "",
+		"TOE": "62653.07",
+		"underwriterGPRINC": "258963",
+		"underwriterNOI": "258741",
+		"underwriterTOE": "369852"
+	},
+	"status": "Complete",
+	"userId": "1563beb6-d321-4c07-9f58-34587bb49d6d",
+	"userName": "vijay_yarramsetty@capturisk.com"
+}
 */
 
 app.post("/creditMemo", async(req,res) => {
 
 	const data = req.body;
+	var propertyPics = []
 
 	//this function handles converting the jpeg to a base64
-	const getBase = async () => await request.get(data.logo, async (error, response, body) => {
-		if (!error && response.statusCode == 200) {
-			logo = "data:" + response.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
-			logo = "" + logo + ""
-			console.log("HERE IS THE STRING FOR BASE64 "+logo)
-		}
-	});
+	const getBase64 = async (logo) => {
+	var x;
+	for(x = 0; x < logo.length; x++) {
+	console.log(1);
+	await request.get(logo[x], async (error, response, body) => {
+			if (!error && response.statusCode == 200) {
+				logo[x] = "data:" + response.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
+				console.log("HERE IS THE STRING FOR BASE64 "+logo[x])
+				console.log("-----------------------------------------")
+			}
+		})
+	}};
 
-	getBase();
-
-	data.logo = logo
-	console.log(data)
+	var propertyPics = data.propertyDetails.propertyPics
+	var propertyPics = JSON.parse(propertyPics);
+	console.log(propertyPics)
+	data.propertyDetails.ypropertyPics = getBase64(propertyPics);
 
 	if(fs.existsSync(outputFile)) fs.unlinkSync(outputFile)
 
@@ -145,6 +166,9 @@ app.post("/creditMemo", async(req,res) => {
 				console.log("Exception encountered while executing operation", err)
 			}
 	})
+
+	const file = `${__dirname}/creditMemo.pdf`;
+	res.download(file);
 
 });
 
