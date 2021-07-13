@@ -136,7 +136,7 @@ app.post("/creditMemo", async(req,res) => {
 	var propertyPics = data.propertyDetails.propertyPics
 	var propertyPics = JSON.parse(propertyPics);
 	console.log(propertyPics)
-	data.propertyDetails.ypropertyPics = getBase64(propertyPics);
+	data.propertyDetails.propertyPics = getBase64(propertyPics);
 
 	if(fs.existsSync(outputFile)) fs.unlinkSync(outputFile)
 
